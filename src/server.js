@@ -69,3 +69,11 @@ app.post('/uploadFile', (req, res) => {
         res.redirect('/')
     });
 });
+
+app.get('/reviewDocs', (req, res) => {
+    testInfo.find().then((docs) => {
+        res.render('pages/reviewDocs.ejs', {docs: docs});
+    }).catch((err) => {
+        res.render('pages/reviewDocs.ejs');
+    });
+});

@@ -1,0 +1,33 @@
+<%- include('../partials/header.ejs') -%>
+<%- include('../partials/navbar.ejs') -%>
+
+<div class="container">
+    <div class="row">
+        <% if (locals.docs) %>
+        <% docs.forEach((testInfo) => { %>
+            <div class="col-lg-12">
+                <div class="col-lg-6 col-sm-12 pt-lg-5 px-lg-3 mt-5">
+                      <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">GTID: <%= testInfo.gtid %></h5>
+                      <p class="card-text">
+                          Test Date: <%= testInfo.testDate %>
+                      </p>
+                      <p class="card-text">
+                        Test Result: <%= testInfo.testResult ? "Positive" : "Negative"%>
+                     </p>
+                     <p class="card-text">
+                        Approved by HR: <%= testInfo.approvedByHR ? "Yes" : "No"%>
+                     </p>
+                     <a href = "/viewDoc?<%=testInfo._id%>">
+                        <button type="button" class="btn btn-primary btn-lg">Review document</button>
+                    </a>
+                    </div>
+                  </div>
+                </div>
+            </div>    
+        <% }) %>
+    </div>
+</div>
+
+<%- include('../partials/footer.ejs') -%>
