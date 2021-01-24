@@ -13,24 +13,24 @@
               <form action="/uploadFile" enctype = "multipart/form-data" method = "POST">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">What is your name?</span>
+                      <span class="input-group-text" id="basic-addon1">What is your GTID?</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Enter your name" aria-label="Enter your name" aria-describedby="basic-addon1">
+                    <input type="text" name = "gtid" class="form-control" required placeholder="Enter your GTID" aria-label="Enter your GTID" aria-describedby="basic-addon1">
                   </div>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="basic-addon1">Date of COVID-19 Test</span>
                     </div>
-                    <input type="date" class="form-control" placeholder="Enter COVID-19 Test Date" aria-label="Enter date of COVID-19 test" aria-describedby="basic-addon1">
+                    <input type="date" required name = "testDate" class="form-control" placeholder="Enter COVID-19 Test Date" aria-label="Enter date of COVID-19 test" aria-describedby="basic-addon1">
                   </div>
                   <p>What was your test result?</p>
                   <div class="input-group mb-3">
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                        <input type="radio" name = "testResult" value = "positive" id="customRadioInline1" class="custom-control-input" required>
                         <label class="custom-control-label" for="customRadioInline1">Positive</label>
                       </div>
                       <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                        <input type="radio" id="customRadioInline2" name = "testResult" value = "negative" class="custom-control-input" required>
                         <label class="custom-control-label" for="customRadioInline2">Negative</label>
                       </div>
                     </div>
@@ -40,10 +40,9 @@
                       type="file"
                       class="custom-file-input"
                       id="uploadFiles"
-                      name = "xmlFiles"
+                      name = "covidDoc"
                       aria-describedby="uploadFiles"
                       required
-                      multiple
                     />
                     <label class="custom-file-label" for="uploadFiles"
                       >Select COVID-19 Testing Document</label
