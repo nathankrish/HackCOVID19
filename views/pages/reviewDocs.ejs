@@ -19,9 +19,17 @@
                      <p class="card-text">
                         Approved by HR: <%= testInfo.approvedByHR ? "Yes" : "No"%>
                      </p>
-                     <a href = "/viewDoc?<%=testInfo._id%>">
-                        <button type="button" class="btn btn-primary btn-lg">Review document</button>
+                     <a href = "/viewDoc?id=<%=testInfo._id%>">
+                        <button type="button" class="btn btn-primary">Review document</button>
                     </a>
+                     <div class = "btn-group-justified btn-group-sm btn-group-horizontal">
+                    <a href = "/approveDoc?id=<%=testInfo._id%>">
+                        <button type="button" class="btn btn-success">Approve document</button>
+                    </a>
+                    <a href = "/rejectDoc?id=<%=testInfo._id%>">
+                        <button type="button" class="btn btn-danger">Reject document</button>
+                    </a>
+                    </div>
                     </div>
                   </div>
                 </div>

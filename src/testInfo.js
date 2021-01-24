@@ -18,6 +18,10 @@ const testInfoSchema = new Schema({
         type: String,
         required: true
     },
+    reviewedByHR: {
+        type: Boolean,
+        required: true
+    },
     approvedByHR: {
         type: Boolean,
         required: true

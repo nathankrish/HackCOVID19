@@ -63,6 +63,7 @@ app.post('/uploadFile', (req, res) => {
             testDate: req.body.testDate,
             testResult: testResult,
             documentationPath: req.file.path,
+            reviewedByHR: false,
             approvedByHR: false
         });
         newTest.save();
@@ -71,9 +72,32 @@ app.post('/uploadFile', (req, res) => {
 });
 
 app.get('/reviewDocs', (req, res) => {
-    testInfo.find().then((docs) => {
+    testInfo.find({reviewedByHR: false}).then((docs) => {
         res.render('pages/reviewDocs.ejs', {docs: docs});
     }).catch((err) => {
         res.render('pages/reviewDocs.ejs');
     });
+});
+
+app.get('/viewDoc', (req, res) => {
+    testInfo.findById(req.query.id).then((doc) => {
+        console.log(doc.documentationPath);
+        res.sendFile(path.join(path.resolve(), doc.documentationPath));
+    }).catch();
+});
+
+app.get('/approveDoc', async (req, res) => {
+    let info = testInfo.findById(req.query.id).then((info));
+    info.reviewedByHR = true;
+    info.approvedByHR = true;
+    await info.save();
+    res.redirect('/reviewDocs');
+});
+
+app.get('/rejectDoc', async (req, res) => {
+    let info = await testInfo.findById(req.query.id);
+    info.reviewedByHR = true;
+    info.approvedByHR = false;
+    await info.save();
+    res.redirect('/reviewDocs');
 });
