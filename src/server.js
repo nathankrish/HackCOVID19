@@ -5,6 +5,7 @@ import * as multer from "multer";
 import sanitize from "sanitize-filename";
 import mongoose from "mongoose";
 import {testInfo} from "./testInfo.js"
+import {user} from "./user.js"
 
 const app = express();
 const port = 3000;
@@ -101,3 +102,13 @@ app.get('/rejectDoc', async (req, res) => {
     await info.save();
     res.redirect('/reviewDocs');
 });
+
+app.get('/statistics', async (req, res) => {
+    let numPositive = await testInfo.countDocuments({testResult: true});
+    let numNegative = await testInfo.countDocuments({testResult: false});
+
+    let positivityRate = (numPositive * 1.0 / await testInfo.count()) * 100.0;
+
+    let numTestedLastWeek = await testInfo.find({testDate: {$gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000)}}).count();
+    res.render('pages/statistics.ejs', {numPositive, numNegative, positivityRate, numTestedLastWeek});
+})

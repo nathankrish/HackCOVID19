@@ -1,0 +1,28 @@
+<%- include('../partials/header.ejs') -%>
+<%- include('../partials/navbar.ejs') -%>
+
+<div class="col-lg-12">
+    <div class="col-lg-6 col-sm-12 pt-lg-5 px-lg-3 mt-5">
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">COVID-19 Testing Statistics</h5>
+            <% if (locals) { %>
+                <p class="card-text">
+                Number of positive cases: <%= numPositive %>
+                </p>
+                <p class="card-text">
+                Number of negative cases: <%= numNegative %>  
+                </p> 
+                <p class="card-text">
+                Positivity Rate: <%= positivityRate.toFixed(2) %>% 
+                </p>
+                <p class="card-text">
+                Number of people tested in the last week: <%= numTestedLastWeek %>
+                </p> 
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer.ejs') -%>
