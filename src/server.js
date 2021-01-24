@@ -88,7 +88,7 @@ app.get('/viewDoc', (req, res) => {
 });
 
 app.get('/approveDoc', async (req, res) => {
-    let info = await testInfo.findById(req.query.id).then((info));
+    let info = await testInfo.findById(req.query.id);
     info.reviewedByHR = true;
     info.approvedByHR = true;
     await info.save();
