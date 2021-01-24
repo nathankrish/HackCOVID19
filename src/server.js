@@ -107,8 +107,8 @@ app.get('/statistics', async (req, res) => {
     let numPositive = await testInfo.countDocuments({testResult: true});
     let numNegative = await testInfo.countDocuments({testResult: false});
 
-    let positivityRate = (numPositive * 1.0 / await testInfo.count()) * 100.0;
+    let positivityRate = (numPositive * 1.0 / await testInfo.countDocuments()) * 100.0;
 
-    let numTestedLastWeek = await testInfo.find({testDate: {$gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000)}}).count();
-    res.render('pages/statistics.ejs', {numPositive, numNegative, positivityRate, numTestedLastWeek});
+    let numTestedLastWeek = await testInfo.find({testDate: {$gte: new Date(new Date() - 7 * 60 * 60 * 24 * 1000)}}).countDocuments();
+    res.render('pages/dashboard.ejs', {numPositive, numNegative, positivityRate, numTestedLastWeek});
 })
