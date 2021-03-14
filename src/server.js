@@ -8,7 +8,7 @@ import {testInfo} from "./testInfo.js"
 import {user} from "./user.js"
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 80;
 
 // SET STORAGE
 const storage = multer.diskStorage({
