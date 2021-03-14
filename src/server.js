@@ -9,6 +9,7 @@ import {user} from "./user.js"
 
 const app = express();
 const port = process.env.PORT || 80;
+process.env.PWD = process.cwd()
 
 // SET STORAGE
 const storage = multer.diskStorage({
@@ -40,7 +41,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.set("view engine", "ejs");
-app.use('/assets/', express.static('assets'));
+app.use('/assets/', express.static(process.env.PWD + '/assets'));
 
 app.get('/', (req, res) => {
     res.render("pages/home.ejs");
